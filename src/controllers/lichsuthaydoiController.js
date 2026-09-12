@@ -1,6 +1,14 @@
 const response = require('../utils/response');
 const lichsuthaydoiModel = require('../models/lichsuthaydoiModel');
 
+const attachHttpMeta = (error) => {
+    if (error && error.code === 'ER_DUP_ENTRY') {
+        error.statusCode = 409;
+        error.message = 'Lịch sử đã tồn tại';
+    }
+    return error;
+};
+
 const lichsuthaydoiController = {
     getAll: async (req, res, next) => {
         try {

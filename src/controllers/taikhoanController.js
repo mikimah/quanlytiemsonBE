@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const attachHttpMeta = (error) => {
     if (error && error.code === 'ER_DUP_ENTRY') {
         error.statusCode = 409;
-        error.message = 'Chi tiết đơn hàng đã tồn tại';
+        error.message = 'Tài khoản đã tồn tại';
     }
     return error;
 };
